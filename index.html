@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社藤井製作所 | 次世代型 警備・清掃自律ロボット</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Sans JP & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', '"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        warmbg: '#F8F6F2',
+                        beige: {
+                            50: '#FAF8F5',
+                            100: '#F4F0EA',
+                            200: '#E8E1D7',
+                            300: '#DDD3C4',
+                        },
+                        blue: {
+                            50: '#f0f5f9',
+                            100: '#dce8f3',
+                            200: '#b8d1e7',
+                            500: '#5c89b0',
+                            600: '#4b79a1', /* Main accent blue */
+                            700: '#3a6285',
+                            800: '#2c4a66',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F8F6F2;
+            color: #1E293B;
+        }
+        /* Custom class for SPA-like page switching */
+        .page-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .page-content.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-800 bg-warmbg min-h-screen flex flex-col">
+
+    <!-- HEADER NAV -->
+    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-slate-200/80 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer group" onclick="navigateTo('home')">
+                    <div class="h-10 sm:h-12 flex items-center">
+                        <svg viewBox="0 0 540 160" class="h-full w-auto" xmlns="http://www.w3.org/2000/svg" aria-label="Fujii tech Logo">
+                            <defs>
+                                <linearGradient id="fujiBlueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#3b82f6"/>
+                                    <stop offset="50%" stop-color="#2563eb"/>
+                                    <stop offset="100%" stop-color="#1d4ed8"/>
+                                </linearGradient>
+                                <linearGradient id="snowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#ffffff"/>
+                                    <stop offset="100%" stop-color="#e2e8f0"/>
+                                </linearGradient>
+                                <radialGradient id="globeSphere" cx="40%" cy="40%" r="60%">
+                                    <stop offset="0%" stop-color="#93c5fd"/>
+                                    <stop offset="50%" stop-color="#3b82f6"/>
+                                    <stop offset="100%" stop-color="#1e40af"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <!-- Fujii Mountain Stylized Group -->
+                            <g transform="skewX(-24) translate(40, 0)">
+                                <!-- Base Mountain Left Slope -->
+                                <path d="M -10,120 L 105,18 L 135,18 L 45,120 Z" fill="url(#fujiBlueGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+                                <path d="M 80,42 L 105,18 L 135,18 L 120,42 Q 100,35 80,42 Z" fill="url(#snowGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+
+                                <!-- Letter F -->
+                                <path d="M 50,120 L 115,22 L 180,22 L 170,42 L 135,42 L 127,62 L 160,62 L 150,80 L 120,80 L 100,120 Z" fill="url(#fujiBlueGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+                                <path d="M 102,42 L 115,22 L 180,22 L 170,42 Z" fill="url(#snowGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+
+                                <!-- Letter u -->
+                                <path d="M 165,60 L 180,38 L 202,38 L 190,92 Q 185,106 200,106 Q 212,106 220,92 L 232,60 L 254,60 L 238,95 Q 222,122 195,122 Q 170,122 174,95 Z" fill="url(#fujiBlueGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+                                <path d="M 165,60 L 180,38 L 202,38 L 195,50 Z" fill="url(#snowGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+
+                                <!-- Letter j -->
+                                <path d="M 235,60 L 250,38 L 272,38 L 252,102 Q 244,124 218,124 L 206,124 L 210,106 L 218,106 Q 230,106 235,92 Z" fill="url(#fujiBlueGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+                                <path d="M 235,60 L 250,38 L 272,38 L 262,50 Z" fill="url(#snowGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+
+                                <!-- Letter i (1) -->
+                                <path d="M 270,60 L 285,38 L 307,38 L 287,120 L 265,120 Z" fill="url(#fujiBlueGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+                                <path d="M 270,60 L 285,38 L 307,38 L 298,50 Z" fill="url(#snowGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+
+                                <!-- Letter i (2) -->
+                                <path d="M 305,60 L 320,38 L 342,38 L 322,120 L 300,120 Z" fill="url(#fujiBlueGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+                                <path d="M 305,60 L 320,38 L 342,38 L 333,50 Z" fill="url(#snowGrad)" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+                            </g>
+
+                            <!-- "tech" stylized logo text -->
+                            <g transform="translate(340, 72)">
+                                <!-- t -->
+                                <path d="M 12,-28 L 22,-28 L 22,-10 L 34,-10 L 34,0 L 22,0 L 22,25 Q 22,32 30,32 L 36,32 L 36,42 L 26,42 Q 10,42 10,25 L 10,0 L 2,0 L 2,-10 L 10,-10 Z" fill="none" stroke="#1d4ed8" stroke-width="4" stroke-linejoin="round"/>
+                                
+                                <!-- e with embedded sphere/globe -->
+                                <path d="M 46,16 L 76,16 Q 76,0 62,0 Q 46,0 46,20 Q 46,42 64,42 Q 74,42 80,34 L 72,26 Q 68,32 62,32 Q 54,32 54,22 L 54,16 Z" fill="none" stroke="#1d4ed8" stroke-width="4" stroke-linejoin="round"/>
+                                <circle cx="60" cy="24" r="11" fill="url(#globeSphere)"/>
+                                <ellipse cx="60" cy="24" rx="11" ry="4" fill="none" stroke="#ffffff" stroke-width="1.5" transform="rotate(-20, 60, 24)"/>
+
+                                <!-- c -->
+                                <path d="M 112,12 L 104,18 Q 98,10 90,10 Q 80,10 80,22 Q 80,34 90,34 Q 98,34 104,26 L 112,32 Q 104,44 88,44 Q 68,44 68,22 Q 68,0 88,0 Q 102,0 112,12 Z" fill="none" stroke="#1d4ed8" stroke-width="4" stroke-linejoin="round"/>
+
+                                <!-- h -->
+                                <path d="M 120,-30 L 132,-30 L 132,10 Q 140,0 152,0 Q 166,0 166,18 L 166,42 L 154,42 L 154,20 Q 154,10 144,10 Q 132,10 132,22 L 132,42 L 120,42 Z" fill="none" stroke="#1d4ed8" stroke-width="4" stroke-linejoin="round"/>
+                            </g>
+
+                            <!-- Tagline: Inspiration of Mt.fuji -->
+                            <text x="15" y="152" font-family="'Inter', sans-serif" font-style="italic" font-weight="800" font-size="20" fill="#3b82f6" letter-spacing="1.5">Inspiration of Mt.fuji</text>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-500 font-semibold tracking-wider block leading-none">自律走行ロボット専門メーカー</span>
+                        <span class="text-base sm:text-lg font-bold text-slate-900 tracking-tight leading-tight block group-hover:text-blue-700 transition">株式会社 藤井製作所</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg transition-colors text-slate-600 hover:text-blue-700 hover:bg-slate-100">
+                        ホーム
+                    </button>
+                    <button onclick="navigateTo('catalog')" id="nav-catalog" class="nav-btn px-4 py-2 rounded-lg transition-colors text-slate-600 hover:text-blue-700 hover:bg-slate-100">
+                        製品カタログ
+                    </button>
+                    <button onclick="navigateTo('dualis-x')" id="nav-dualis-x" class="nav-btn px-4 py-2 rounded-lg transition-colors text-slate-600 hover:text-blue-700 hover:bg-slate-100">
+                        Dualis X（最上位機）
+                    </button>
+                </nav>
+
+                <!-- Right Header Actions (Menu Bar) -->
+                <div class="flex items-center space-x-3">
+                    <button onclick="scrollToContact()" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white bg-blue-600 rounded-lg shadow-sm hover:bg-blue-700 transition">
+                        お問い合わせ・資料請求
+                    </button>
+                    <!-- Quick Menu Button -->
+                    <button onclick="toggleQuickMenu()" class="p-2.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 transition flex items-center space-x-2 font-medium text-xs">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <span class="hidden xs:inline">メニュー</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- QUICK MENU MODAL / DRAWER -->
+    <div id="quick-menu" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden transition-opacity">
+        <div class="fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+                    <h3 class="font-bold text-slate-900 text-base">メニューナビゲーション</h3>
+                    <button onclick="toggleQuickMenu()" class="p-1 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-6 space-y-2">
+                    <button onclick="navigateTo('home'); toggleQuickMenu();" class="w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 text-slate-700 hover:text-blue-700 font-medium text-sm flex items-center justify-between transition">
+                        <span>トップページ</span>
+                        <span class="text-xs text-slate-400">HOME</span>
+                    </button>
+                    <button onclick="navigateTo('catalog'); toggleQuickMenu();" class="w-full text-left px-4 py-3 rounded-lg hover:bg-blue-50 text-slate-700 hover:text-blue-700 font-medium text-sm flex items-center justify-between transition">
+                        <span>製品カタログ一覧</span>
+                        <span class="text-xs text-slate-400">LINEUP</span>
+                    </button>
+                    
+                    <div class="pt-4 pb-1">
+                        <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase">Products</span>
+                    </div>
+                    <button onclick="navigateTo('dualis-x'); toggleQuickMenu();" class="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-50 text-slate-700 hover:text-blue-700 font-medium text-sm transition">
+                        Dualis X <span class="text-[10px] text-slate-400 ml-1">最上位機</span>
+                    </button>
+                    <button onclick="navigateTo('dualis-y'); toggleQuickMenu();" class="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-50 text-slate-700 hover:text-blue-700 font-medium text-sm transition">
+                        Dualis Y <span class="text-[10px] text-slate-400 ml-1">上級機</span>
+                    </button>
+                    <button onclick="navigateTo('dualis-z'); toggleQuickMenu();" class="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-50 text-slate-700 hover:text-blue-700 font-medium text-sm transition">
+                        Dualis Z <span class="text-[10px] text-slate-400 ml-1">標準機</span>
+                    </button>
+                    <button onclick="navigateTo('dualis-a'); toggleQuickMenu();" class="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-50 text-slate-700 hover:text-blue-700 font-medium text-sm transition">
+                        Dualis A <span class="text-[10px] text-slate-400 ml-1">小型機</span>
+                    </button>
+                </div>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-200 space-y-3">
+                <button onclick="scrollToContact(); toggleQuickMenu();" class="w-full py-3 bg-blue-600 text-white font-bold text-xs rounded-lg shadow-sm hover:bg-blue-700 transition">
+                    お問い合わせフォーム
+                </button>
+                <p class="text-[11px] text-slate-400 text-center">株式会社藤井製作所 公式Web</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow pt-16 sm:pt-20">
+
+        <!-- PAGE 1: HOME -->
+        <div id="page-home" class="page-content">
+            
+            <!-- Hero Section -->
+            <section class="py-12 sm:py-20 bg-gradient-to-b from-white via-beige-50 to-warmbg border-b border-slate-200 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                        
+                        <div class="lg:col-span-7 space-y-6 relative z-10">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-xs font-semibold">
+                                <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+                                自律走行ロボットの国内専門メーカー
+                            </div>
+                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+                                <span class="inline-block">日本の現場に、</span><span class="inline-block">確かな安心と清潔を。</span>
+                                <span class="block text-blue-600 mt-2 text-2xl sm:text-3xl lg:text-4xl">次世代型 警備・清掃ソリューション</span>
+                            </h1>
+                            <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+                                株式会社藤井製作所は、高い自律走行精度とマルチセンサーフュージョン技術により、商業施設・オフィスビル・工場の現場負担を大幅に削減する自律ロボットをご提供します。
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                                <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-lg shadow-sm transition text-center">
+                                    製品カタログを見る
+                                </button>
+                                <button onclick="navigateTo('dualis-x')" class="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-sm rounded-lg transition text-center">
+                                    最上位機 Dualis X について
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hero Feature Card -->
+                        <div class="lg:col-span-5 relative z-10 mt-8 lg:mt-0">
+                            <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xl shadow-slate-200/50 space-y-5 transform hover:-translate-y-1 transition duration-300">
+                                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                    <span class="text-xs font-bold text-blue-700 uppercase tracking-wider">Flagship Model</span>
+                                    <span class="text-[11px] bg-amber-100 text-amber-800 font-semibold px-3 py-1 rounded-full flex items-center gap-1">
+                                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                        一番人気
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-slate-900">Dualis X - Hybrid</h3>
+                                    <p class="text-xs text-slate-500 mt-1">デュアリス エックス ハイブリッド</p>
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                    警備と清掃の完全同時に対応する最上位フラッグシップモデル。最新AIチップとマルチスレッド制御により、施設管理の品質を飛躍的に向上させます。
+                                </p>
+                                <dl class="space-y-3 text-xs sm:text-sm divide-y divide-slate-100 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                    <div class="pt-2 pb-1 flex justify-between items-center first:pt-0">
+                                        <dt class="text-slate-500 font-medium">動作モード</dt>
+                                        <dd class="font-bold text-slate-900">警備・清掃 <span class="text-blue-600">完全同時</span></dd>
+                                    </div>
+                                    <div class="pt-3 pb-1 flex justify-between items-center">
+                                        <dt class="text-slate-500 font-medium">連続稼働</dt>
+                                        <dd class="font-bold text-slate-900">最大 8 時間</dd>
+                                    </div>
+                                    <div class="pt-3 pb-1 flex justify-between items-center">
+                                        <dt class="text-slate-500 font-medium">搭載センサー</dt>
+                                        <dd class="font-bold text-slate-900 text-right">3D-LiDAR / 熱画像<br>360°4Kカメラ</dd>
+                                    </div>
+                                </dl>
+                                <button onclick="navigateTo('dualis-x')" class="w-full pt-2 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm rounded-lg transition text-center block flex items-center justify-center gap-2">
+                                    <span>詳細仕様を見る</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5 Core Features Summary Section -->
+            <section class="py-16 sm:py-24 bg-warmbg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                        <span class="text-xs font-bold text-blue-700 tracking-wider uppercase">Our Core Technology</span>
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">藤井製作所が誇る 5つのコア・テクノロジー</h2>
+                        <p class="text-sm text-slate-600">現場の安心・清潔と業務の自動化を強力に後押しする先端機能</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                        <!-- Tech 1 -->
+                        <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition duration-300 space-y-4">
+                            <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-700 font-mono font-bold flex items-center justify-center text-lg border border-blue-100">01</div>
+                            <h3 class="font-bold text-slate-900 text-lg">マルチスレッド並列制御</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                床面の吸塵・湿式拭き上げを行いながら、360度4KカメラとAI映像解析で周囲の不審者や不審物を同時に検知し、処理能力のボトルネックを解消します。
+                            </p>
+                        </div>
+                        <!-- Tech 2 -->
+                        <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition duration-300 space-y-4">
+                            <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-700 font-mono font-bold flex items-center justify-center text-lg border border-blue-100">02</div>
+                            <h3 class="font-bold text-slate-900 text-lg">AI人流・汚れ予測マップ</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                時間帯ごとの通行量や汚れの蓄積傾向を学習し、最も効率的な巡回・清掃ルートを動的に自律生成。無駄のない運用を実現します。
+                            </p>
+                        </div>
+                        <!-- Tech 3 -->
+                        <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition duration-300 space-y-4">
+                            <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-700 font-mono font-bold flex items-center justify-center text-lg border border-blue-100">03</div>
+                            <h3 class="font-bold text-slate-900 text-lg">全天候・暗闇センサー</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                3D-LiDARと熱画像（サーモグラフィ）センサーを組み合わせ、完全消灯時の暗黒空間や煙発生時でも安定して空間を認識し機能します。
+                            </p>
+                        </div>
+                        <!-- Tech 4 -->
+                        <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition duration-300 space-y-4">
+                            <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-700 font-mono font-bold flex items-center justify-center text-lg border border-blue-100">04</div>
+                            <h3 class="font-bold text-slate-900 text-lg">完全自動ドッキング</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                専用ステーションにて自動給電・自動給排水・自動ゴミ吸引排出をワンストップで行い、日々のメンテナンス作業をほぼ無人化します。
+                            </p>
+                        </div>
+                        <!-- Tech 5 -->
+                        <div class="bg-white p-6 sm:p-8 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition duration-300 space-y-4">
+                            <div class="w-12 h-12 rounded-lg bg-blue-50 text-blue-700 font-mono font-bold flex items-center justify-center text-lg border border-blue-100">05</div>
+                            <h3 class="font-bold text-slate-900 text-lg">専門オペレーター直結</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                万が一のトラブル時や来訪者の案内要請時には、当社の専門オペレーターが遠隔アバターを通してリアルタイムで画面と音声で応答します。
+                            </p>
+                        </div>
+                        <!-- CTA Card -->
+                        <div class="bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 sm:p-8 rounded-xl shadow-md space-y-6 flex flex-col justify-between transform hover:scale-[1.02] transition duration-300">
+                            <div>
+                                <h3 class="font-bold text-xl">ラインナップを見る</h3>
+                                <p class="text-sm text-blue-100 mt-3 leading-relaxed">
+                                    最上位機 Dualis X からベーシック機 Dualis A まで、施設の規模や用途に応じた最適なモデルをご用意しています。
+                                </p>
+                            </div>
+                            <button onclick="navigateTo('catalog')" class="w-full py-3.5 bg-white text-blue-700 hover:bg-blue-50 font-bold text-sm rounded-lg transition text-center shadow-sm">
+                                製品カタログページへ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Partner & Testimonial Section -->
+            <section class="py-16 sm:py-24 bg-white border-t border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                        <span class="text-xs font-bold text-blue-700 tracking-wider uppercase">Partners & Case Studies</span>
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">協賛・導入会社例</h2>
+                        <p class="text-sm text-slate-600">藤井製作所の自律走行ロボットソリューションをご導入・協賛いただいている企業様のご紹介</p>
+                    </div>
+
+                    <!-- Client Testimonial Card: Hoshino Manufacturing -->
+                    <div class="max-w-4xl mx-auto bg-warmbg border border-slate-200 rounded-2xl p-6 sm:p-10 shadow-sm relative">
+                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+                            <div class="space-y-1">
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">
+                                    導入・協賛企業
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-900">株式会社 星野製作所 様</h3>
+                            </div>
+                            <a href="https://s2025799-ops.github.io/Hoshino-Manufacturing-Co.-Ltd./#entertainment" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-lg transition shadow-sm">
+                                <span>星野製作所様 公式サイト</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Hoshino Testimonial Area -->
+                        <div class="pt-6 space-y-4">
+                            <h4 class="text-lg font-bold text-blue-800 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                </svg>
+                                星野製作所様の声
+                            </h4>
+                            <div class="bg-white p-6 sm:p-8 rounded-xl border border-blue-100 text-slate-700 text-sm sm:text-base leading-relaxed space-y-4 shadow-sm">
+                                <p class="text-slate-800">
+                                    星野製作所水戸支社から失礼します。ホームページの開設、誠におめでとうございます。また常日頃より役立つ機械などをご提供くださりありがとうございます。今後ともよしなにお願いします。
+                                </p>
+                                <div class="text-right font-bold text-slate-900 pt-3 border-t border-slate-100 text-xs sm:text-sm">
+                                    星野製作所代表 星野takoika
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 2: CATALOG -->
+        <div id="page-catalog" class="page-content">
+            <section class="py-12 sm:py-16 bg-white border-b border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold text-blue-700 uppercase tracking-wider">Product Lineup</span>
+                        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">藤井製作所 製品カタログ</h1>
+                        <p class="text-sm sm:text-base text-slate-600">用途や施設規模に応じて選べる Dualis シリーズの全ラインナップ</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Cards -->
+            <section class="py-12 sm:py-16 bg-warmbg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                    
+                    <!-- 1. Dualis X (Most Popular) -->
+                    <div class="bg-white rounded-2xl border border-blue-200 shadow-md p-6 sm:p-10 relative overflow-hidden group hover:border-blue-300 transition">
+                        <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-5 py-1.5 rounded-bl-xl shadow-sm z-10">
+                            一番人気 / Flagship Model
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-0">
+                            <div class="lg:col-span-7 space-y-5">
+                                <div class="inline-flex items-center gap-2 text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full">
+                                    <span>最上位モデル</span>
+                                    <span>•</span>
+                                    <span>型番: DUAL-X</span>
+                                </div>
+                                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Dualis X - Hybrid</h2>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    警備と清掃の完全同時に対応するフラッグシップモデル。ハイパフォーマンスAIチップ搭載により、大規模商業施設やオフィスビルでの高精度な自律運用を強力にサポートします。
+                                </p>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs sm:text-sm">
+                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                        <span class="text-slate-500 block text-xs mb-1">対応機能</span>
+                                        <span class="font-bold text-slate-900">警備＋清掃（同時）</span>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                        <span class="text-slate-500 block text-xs mb-1">連続稼働時間</span>
+                                        <span class="font-bold text-slate-900">最大 8 時間</span>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hidden sm:block">
+                                        <span class="text-slate-500 block text-xs mb-1">旋回性能</span>
+                                        <span class="font-bold text-slate-900">その場旋回対応</span>
+                                    </div>
+                                </div>
+                                <div class="pt-4">
+                                    <button onclick="navigateTo('dualis-x')" class="px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-lg transition inline-flex items-center gap-2 shadow-sm">
+                                        <span>Dualis X について詳しく知る</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-5 bg-gradient-to-br from-beige-50 to-beige-100 p-6 sm:p-8 rounded-xl border border-beige-200 text-sm space-y-4">
+                                <h3 class="font-bold text-slate-900 border-b border-beige-300 pb-2">標準搭載機能・モジュール</h3>
+                                <ul class="space-y-3 text-slate-700">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                                        <span>3D-LiDAR × 2 & サーモグラフィカメラ</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                                        <span>360°4K防犯カメラ & AIリアルタイム解析</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                                        <span>全自動ドッキング（給電＋給排水＋集塵）</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-600 font-bold mt-0.5">✓</span>
+                                        <span>藤井製作所オペレーター直結通話機能</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Dualis Y -->
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 hover:border-slate-300 transition">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                            <div class="lg:col-span-8 space-y-4">
+                                <div class="inline-flex items-center gap-2 text-xs font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
+                                    <span>上級モデル</span>
+                                    <span>•</span>
+                                    <span>型番: DUAL-Y</span>
+                                </div>
+                                <h2 class="text-2xl font-bold text-slate-900">Dualis Y - Advanced</h2>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    広大フロアの巡回警備または大容量床清掃に特化した上級モデル。要件に応じたモジュールのカスタマイズ構成に対応します。
+                                </p>
+                                <div class="flex flex-wrap gap-4 text-sm font-medium text-slate-700 pt-2">
+                                    <span class="bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg">警備 / 清掃切替</span>
+                                    <span class="bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg">最大 7 時間稼働</span>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-slate-200 pt-6 lg:pt-0 lg:pl-8 flex flex-col justify-center space-y-3">
+                                <button onclick="navigateTo('dualis-y')" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm rounded-lg transition text-center shadow-sm">
+                                    詳細を見る
+                                </button>
+                                <button onclick="scrollToContact('Dualis Y')" class="w-full py-3 border border-slate-300 hover:bg-slate-50 text-slate-800 font-bold text-sm rounded-lg transition text-center">
+                                    相談・見積り
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Dualis Z & 4. Dualis A (Grid) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                        <!-- Dualis Z -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-5 hover:border-slate-300 transition flex flex-col">
+                            <div class="inline-block text-xs font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full w-max">
+                                中級モデル • 型番: DUAL-Z
+                            </div>
+                            <h2 class="text-xl font-bold text-slate-900">Dualis Z - Standard</h2>
+                            <p class="text-sm text-slate-600 leading-relaxed flex-grow">
+                                中規模オフィスや公共施設に最適なオールラウンド標準機。昼間は清掃、夜間は警備とタスクを切り替えるシーケンシャル制御を採用。
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-100">
+                                <button onclick="navigateTo('dualis-z')" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm rounded-lg transition text-center">
+                                    詳細
+                                </button>
+                                <button onclick="scrollToContact('Dualis Z')" class="flex-1 py-2.5 border border-slate-300 hover:bg-slate-50 text-slate-800 font-bold text-sm rounded-lg transition text-center">
+                                    相談
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Dualis A -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-5 hover:border-slate-300 transition flex flex-col">
+                            <div class="inline-block text-xs font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full w-max">
+                                ベーシックモデル • 型番: DUAL-A
+                            </div>
+                            <h2 class="text-xl font-bold text-slate-900">Dualis A - Basic</h2>
+                            <p class="text-sm text-slate-600 leading-relaxed flex-grow">
+                                店舗やクリニック等の小規模な現場に適したエントリーモデル。狭い通路もスムーズに走行できる省スペース・取り回しの良さが特長。
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-100">
+                                <button onclick="navigateTo('dualis-a')" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm rounded-lg transition text-center">
+                                    詳細
+                                </button>
+                                <button onclick="scrollToContact('Dualis A')" class="flex-1 py-2.5 border border-slate-300 hover:bg-slate-50 text-slate-800 font-bold text-sm rounded-lg transition text-center">
+                                    相談
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Specs Matrix Table -->
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 space-y-6 shadow-sm overflow-hidden">
+                        <h3 class="font-bold text-slate-900 text-lg sm:text-xl">Dualis シリーズ全機種 スペック比較表</h3>
+                        <div class="overflow-x-auto pb-4">
+                            <table class="w-full text-left border-collapse text-sm min-w-[600px]">
+                                <thead>
+                                    <tr class="bg-slate-100 text-slate-700 font-bold border-b-2 border-slate-200">
+                                        <th class="p-4 rounded-tl-lg">主な仕様・機能</th>
+                                        <th class="p-4 bg-blue-50 text-blue-900">Dualis X (最上位)</th>
+                                        <th class="p-4">Dualis Y (上級)</th>
+                                        <th class="p-4">Dualis Z (中級)</th>
+                                        <th class="p-4 rounded-tr-lg">Dualis A (ベーシック)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 text-slate-700">
+                                    <tr class="hover:bg-slate-50 transition">
+                                        <td class="p-4 font-medium bg-slate-50/50">警備・清掃同時遂行</td>
+                                        <td class="p-4 font-bold text-blue-700 bg-blue-50/30">完全対応（並列制御）</td>
+                                        <td class="p-4">切替対応</td>
+                                        <td class="p-4">切替対応</td>
+                                        <td class="p-4">単独動作</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition">
+                                        <td class="p-4 font-medium bg-slate-50/50">最大連続稼働時間</td>
+                                        <td class="p-4 font-bold text-slate-900 bg-blue-50/30">約 8 時間</td>
+                                        <td class="p-4">約 7 時間</td>
+                                        <td class="p-4">約 5 時間</td>
+                                        <td class="p-4">約 3.5 時間</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition">
+                                        <td class="p-4 font-medium bg-slate-50/50">自動ドッキング</td>
+                                        <td class="p-4 font-bold text-slate-900 bg-blue-50/30">給電＋給排水＋集塵</td>
+                                        <td class="p-4">給電＋給排水</td>
+                                        <td class="p-4">給電のみ</td>
+                                        <td class="p-4 text-slate-500">簡易ドック(給電)</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition">
+                                        <td class="p-4 font-medium bg-slate-50/50">暗闇センサー (熱画像)</td>
+                                        <td class="p-4 bg-blue-50/30 font-bold text-slate-900">標準搭載</td>
+                                        <td class="p-4">標準搭載</td>
+                                        <td class="p-4 text-slate-500">非対応</td>
+                                        <td class="p-4 text-slate-500">非対応</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 transition border-b border-slate-200">
+                                        <td class="p-4 font-medium bg-slate-50/50 rounded-bl-lg">遠隔オペレーター直結</td>
+                                        <td class="p-4 bg-blue-50/30 font-bold text-slate-900">標準搭載</td>
+                                        <td class="p-4">標準搭載</td>
+                                        <td class="p-4">オプション</td>
+                                        <td class="p-4 text-slate-500 rounded-br-lg">非対応</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 3: DUALIS X DETAIL PAGE -->
+        <div id="page-dualis-x" class="page-content">
+            <!-- Header Banner -->
+            <section class="py-16 sm:py-20 bg-slate-900 text-white border-b border-slate-800 relative overflow-hidden">
+                <!-- Decorative background element -->
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-blue-600/20 blur-3xl pointer-events-none"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 relative z-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-900/60 text-blue-300 border border-blue-700 text-xs font-bold tracking-wider uppercase">
+                        Flagship Series
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+                        Dualis X - Hybrid
+                    </h1>
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+                        警備・清掃の完全同時並行処理を実現する、藤井製作所の自律走行ロボットテクノロジーの集大成。妥協なき現場管理のために。
+                    </p>
+                </div>
+            </section>
+
+            <!-- Features Breakdown Section -->
+            <section class="py-16 sm:py-24 bg-warmbg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                        <span class="text-xs font-bold text-blue-700 uppercase tracking-wider">Features Breakdown</span>
+                        <h2 class="text-3xl font-bold text-slate-900">Dualis X 搭載の先進機能</h2>
+                    </div>
+
+                    <div class="space-y-10">
+                        <!-- Feature 1 -->
+                        <div class="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                            <div class="lg:col-span-4 bg-blue-50/80 p-8 rounded-xl border border-blue-100 space-y-4 text-center lg:text-left h-full flex flex-col justify-center">
+                                <div class="inline-block px-3 py-1 rounded bg-blue-600 text-white font-mono text-xs font-bold w-max mx-auto lg:mx-0">FEATURE 01</div>
+                                <h3 class="text-xl font-bold text-slate-900">
+                                    マルチスレッド並列制御
+                                </h3>
+                                <span class="text-sm font-semibold text-blue-700 block">警備・清掃のリアルタイム同時遂行</span>
+                                <p class="text-xs text-slate-500 leading-tight">高パフォーマンス車載AIチップによる独立並行処理</p>
+                            </div>
+                            <div class="lg:col-span-8 space-y-4 text-sm text-slate-600 leading-relaxed">
+                                <h4 class="font-bold text-base text-slate-900">仕組みと具体的な動作：</h4>
+                                <p>
+                                    従来のロボットは清掃走行中にセンサー帯域の多くを床面障害物回避に奪われ、警備監視処理が犠牲になる課題がありました。Dualis X では「走行・清掃制御」と「AI映像・防犯解析」を独立したマルチコアプロセッサで同時に稼働させます。
+                                </p>
+                                <p>
+                                    バキューム＆湿式ワイパーで床面を磨き上げながら、上部360度4Kカメラで全周をハイビジョン録画し、AIが不審者の長時間の留まりや放置荷物をミリ秒単位でリアルタイム解析します。
+                                </p>
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-start gap-3 mt-4">
+                                    <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <div>
+                                        <span class="font-bold text-slate-800 block mb-1">導入効果</span>
+                                        <span class="text-slate-700">清掃ルートと警備ルートを分ける必要がなくなり、現場に配置するロボット台数と稼働時間・コストを大幅に削減します。</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                            <div class="lg:col-span-4 bg-blue-50/80 p-8 rounded-xl border border-blue-100 space-y-4 text-center lg:text-left h-full flex flex-col justify-center">
+                                <div class="inline-block px-3 py-1 rounded bg-blue-600 text-white font-mono text-xs font-bold w-max mx-auto lg:mx-0">FEATURE 02</div>
+                                <h3 class="text-xl font-bold text-slate-900">
+                                    全天候・暗闇センサー
+                                </h3>
+                                <span class="text-sm font-semibold text-blue-700 block">3D-LiDAR × サーモフュージョン</span>
+                                <p class="text-xs text-slate-500 leading-tight">照明オフの完全暗黒空間や煙霧環境でも視界を確保</p>
+                            </div>
+                            <div class="lg:col-span-8 space-y-4 text-sm text-slate-600 leading-relaxed">
+                                <h4 class="font-bold text-base text-slate-900">仕組みと具体的な動作：</h4>
+                                <p>
+                                    可視光カメラだけに依存せず、レーザー照射による3D空間認識（3D-LiDAR）と温度分布を可視化する熱画像センサー（サーモグラフィ）を強力に融合させています。
+                                </p>
+                                <p>
+                                    夜間消灯後の暗闇や万が一の発煙時でも空間構造を立体的に捉え、壁や障害物を確実に回避しながら、初期火災の熱源や体温を持つ不審者を素早く検出します。
+                                </p>
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-start gap-3 mt-4">
+                                    <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <div>
+                                        <span class="font-bold text-slate-800 block mb-1">導入効果</span>
+                                        <span class="text-slate-700">照明コストを削減した消灯後の深夜巡回においても、死角のない高精度な防犯・防災監視を実現します。</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Feature 3 -->
+                         <div class="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                            <div class="lg:col-span-4 bg-blue-50/80 p-8 rounded-xl border border-blue-100 space-y-4 text-center lg:text-left h-full flex flex-col justify-center">
+                                <div class="inline-block px-3 py-1 rounded bg-blue-600 text-white font-mono text-xs font-bold w-max mx-auto lg:mx-0">FEATURE 03</div>
+                                <h3 class="text-xl font-bold text-slate-900">
+                                    完全自動ドッキング
+                                </h3>
+                                <span class="text-sm font-semibold text-blue-700 block">非接触給電・自動給排水・吸塵</span>
+                                <p class="text-xs text-slate-500 leading-tight">作業完了後は人間が一切手を触れずに自己メンテ完了</p>
+                            </div>
+                            <div class="lg:col-span-8 space-y-4 text-sm text-slate-600 leading-relaxed">
+                                <h4 class="font-bold text-base text-slate-900">仕組みと具体的な動作：</h4>
+                                <p>
+                                    設定された作業スケジュールの終了、または清掃タンクの満水・汚水限界を検知すると自動でドッキングステーションに帰還します。
+                                </p>
+                                <p>
+                                    非接触ワイヤレス充電を開始すると同時に、ステーション側の強力な吸引ノズルがロボット内部のダストボックスからゴミを排出。さらにタンクの汚水排出とキレイな水の自動給水をすべて無人で完了させ、次の稼働に備えます。
+                                </p>
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-start gap-3 mt-4">
+                                    <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <div>
+                                        <span class="font-bold text-slate-800 block mb-1">導入効果</span>
+                                        <span class="text-slate-700">毎日のゴミ捨てや水交換の手間を大幅にカットし、現場スタッフの負担ゼロでの完全自動運用を後押しします。</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Bottom CTA -->
+                    <div class="mt-16 text-center bg-white p-8 sm:p-12 rounded-2xl border border-slate-200 shadow-md space-y-6">
+                        <h3 class="text-2xl font-bold text-slate-900">Dualis X のご試用・デモ機貸出のご相談</h3>
+                        <p class="text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                            実際の現場（オフィスビル・商業施設・工場など）での自律走行テスト、障害物回避性能の確認、清掃能力の検証を承っております。お気軽にお問い合わせください。
+                        </p>
+                        <button onclick="scrollToContact('Dualis X')" class="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-lg transition inline-block shadow-sm">
+                            Dualis X のご相談・お見積り
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 4: DUALIS Y DETAIL PAGE -->
+        <div id="page-dualis-y" class="page-content">
+            <section class="py-16 bg-slate-800 text-white border-b border-slate-700">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-900/60 text-blue-300 border border-blue-700 text-xs font-bold tracking-wider uppercase">
+                        Advanced Series
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Dualis Y - Advanced</h1>
+                    <p class="text-base text-slate-300 max-w-3xl leading-relaxed">
+                        広大なフロアを持つ大型オフィス・工場・物流倉庫に特化したハイパフォーマンス機。最長7時間の連続稼働と高い清掃能力、カスタマイズ性を誇ります。
+                    </p>
+                </div>
+            </section>
+            
+            <section class="py-16 sm:py-20 bg-warmbg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                    <div class="space-y-8">
+                        <div class="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                            <div class="md:col-span-8 space-y-5">
+                                <h3 class="text-2xl font-bold text-slate-900">圧倒的な稼働時間と超広域・連続清掃テクノロジー</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    大容量バッテリーと大型水タンクを搭載し、1回の充電で広範囲の清掃と巡回警備を実現します。自律的なルートプランニングにより、大規模施設のランニングコストを大幅に削減します。
+                                </p>
+                                <ul class="space-y-3 text-sm text-slate-700 font-medium">
+                                    <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">✓</span> 最大 7 時間の連続稼働</li>
+                                    <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">✓</span> 警備 / 清掃 モードのスマート切替</li>
+                                </ul>
+                            </div>
+                            <div class="md:col-span-4 bg-slate-50 p-8 rounded-xl border border-slate-200 h-full flex flex-col justify-center items-center text-center space-y-4">
+                                <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-2xl shadow-sm">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-lg mb-2">自動給排水対応ドック</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">自動充電に加え、清水の自動給水と汚水の自動排出に対応。メンテ工数を削減します。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center pt-8 border-t border-slate-200">
+                        <button onclick="scrollToContact('Dualis Y')" class="px-10 py-4 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm rounded-lg transition shadow-sm">
+                            Dualis Y のお見積り・ご相談
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 5: DUALIS Z DETAIL PAGE -->
+        <div id="page-dualis-z" class="page-content">
+            <section class="py-16 bg-slate-700 text-white border-b border-slate-600">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/60 text-slate-300 border border-slate-500 text-xs font-bold tracking-wider uppercase">
+                        Standard Series
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Dualis Z - Standard</h1>
+                    <p class="text-base text-slate-300 max-w-3xl leading-relaxed">
+                        中規模ビルや公共施設に最適なオールラウンドモデル。昼間は清掃、夜間は警備とタスクを切り替えるシーケンシャル制御を採用し、高いコストパフォーマンスを実現しました。
+                    </p>
+                </div>
+            </section>
+            
+            <section class="py-16 sm:py-20 bg-warmbg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                    <div class="space-y-8">
+                        <div class="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                            <div class="md:col-span-8 space-y-5">
+                                <h3 class="text-2xl font-bold text-slate-900">コストと機能のベストバランス</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    基本的な自律走行性能と安全センサーを備え、多くの現場で求められる標準機能を網羅。初めてのロボット導入にも最適なスタンダード機です。
+                                </p>
+                                <ul class="space-y-3 text-sm text-slate-700 font-medium">
+                                    <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-bold">✓</span> 連続稼働: 最長 5 時間</li>
+                                    <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-bold">✓</span> 乾式吸塵 ＋ 簡易水拭き対応</li>
+                                </ul>
+                            </div>
+                            <div class="md:col-span-4 bg-slate-50 p-8 rounded-xl border border-slate-200 h-full flex flex-col justify-center items-center text-center space-y-4">
+                                <div class="w-16 h-16 bg-slate-700 text-white rounded-full flex items-center justify-center font-bold text-2xl shadow-sm">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-lg mb-2">昼夜タスク自動切替制御</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">日中は清掃、夜間は警備巡回モードへ順次切り替えて運用することが可能です。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center pt-8 border-t border-slate-200">
+                        <button onclick="scrollToContact('Dualis Z')" class="px-10 py-4 border-2 border-slate-400 hover:bg-slate-100 text-slate-800 font-bold text-sm rounded-lg transition shadow-sm">
+                            Dualis Z のお見積り・ご相談
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 6: DUALIS A DETAIL PAGE -->
+        <div id="page-dualis-a" class="page-content">
+            <section class="py-16 bg-slate-600 text-white border-b border-slate-500">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-700/60 text-slate-200 border border-slate-400 text-xs font-bold tracking-wider uppercase">
+                        Basic Series
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Dualis A - Basic</h1>
+                    <p class="text-base text-slate-200 max-w-3xl leading-relaxed">
+                        店舗・クリニック・小規模オフィス向けのコンパクトなエントリー機。狭小な通路や什器の間もスムーズに走行できる取り回しの良さが最大の特長です。
+                    </p>
+                </div>
+            </section>
+            
+            <section class="py-16 sm:py-20 bg-warmbg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                    <div class="space-y-8">
+                        <div class="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                            <div class="md:col-span-8 space-y-5">
+                                <h3 class="text-2xl font-bold text-slate-900">超小型・スリムボディ設計</h3>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    全高・全幅を限界まで抑えたボディで、一般的なロボットでは進入できない受付カウンター周りや什器の隙間、狭い通路の清掃を可能にしました。
+                                </p>
+                                <ul class="space-y-3 text-sm text-slate-700 font-medium">
+                                    <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-slate-100 border border-slate-300 text-slate-700 flex items-center justify-center font-bold">✓</span> 連続稼働: 最長 3.5 時間</li>
+                                    <li class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-slate-100 border border-slate-300 text-slate-700 flex items-center justify-center font-bold">✓</span> 静音駆動エンジン搭載</li>
+                                </ul>
+                            </div>
+                            <div class="md:col-span-4 bg-slate-50 p-8 rounded-xl border border-slate-200 h-full flex flex-col justify-center items-center text-center space-y-4">
+                                <div class="w-16 h-16 bg-white text-slate-600 rounded-full border border-slate-300 shadow-sm flex items-center justify-center font-bold text-2xl">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-lg mb-2">シンプルで簡単な操作性</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">直感的なインターフェースで、誰でも簡単に清掃ルートの指定や開始操作が可能です。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center pt-8 border-t border-slate-200">
+                        <button onclick="scrollToContact('Dualis A')" class="px-10 py-4 border-2 border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-sm rounded-lg transition shadow-sm">
+                            Dualis A のお見積り・ご相談
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT SECTION (COMMON TO ALL PAGES) -->
+        <section id="contact-section" class="py-16 sm:py-24 bg-white border-t border-slate-200">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-3 mb-12">
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-wider">Contact Us</span>
+                    <h2 class="text-3xl font-bold text-slate-900">導入のご相談・お見積り請求</h2>
+                    <p class="text-sm text-slate-600">お気軽にお問合せください。担当部署より1〜2営業日以内に回答いたします。</p>
+                </div>
+
+                <form onsubmit="handleFormSubmit(event)" class="space-y-6 bg-warmbg p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-2">貴社名 <span class="text-red-500 text-xs ml-1">*</span></label>
+                            <input type="text" required placeholder="例: 株式会社〇〇" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white transition">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-2">ご担当者名 <span class="text-red-500 text-xs ml-1">*</span></label>
+                            <input type="text" required placeholder="例: 山田 太郎" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white transition">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-2">メールアドレス <span class="text-red-500 text-xs ml-1">*</span></label>
+                            <input type="email" required placeholder="example@company.co.jp" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white transition">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-2">ご検討モデル</label>
+                            <select id="contact-model-select" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white text-slate-800 transition appearance-none">
+                                <option value="Dualis X">Dualis X - Hybrid（最上位機）</option>
+                                <option value="Dualis Y">Dualis Y - Advanced（上級機）</option>
+                                <option value="Dualis Z">Dualis Z - Standard（中級機）</option>
+                                <option value="Dualis A">Dualis A - Basic（ベーシック機）</option>
+                                <option value="未定・相談したい">未定・まずは相談したい</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-2">お問い合わせ内容・ご要望</label>
+                        <textarea rows="5" placeholder="具体的な導入環境（広さ、床材など）やご質問事項をご記入ください。" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white transition resize-y"></textarea>
+                    </div>
+
+                    <div class="pt-4 text-center">
+                        <button type="submit" class="w-full sm:w-auto px-12 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-base rounded-xl transition shadow-md hover:shadow-lg">
+                            入力内容を送信する
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Corporate Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 sm:py-16 text-sm border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-slate-800">
+                <div class="space-y-4 lg:col-span-1">
+                    <div class="flex items-center space-x-3 text-white cursor-pointer" onclick="navigateTo('home')">
+                        <div class="h-10 flex items-center">
+                            <svg viewBox="0 0 540 160" class="h-full w-auto" xmlns="http://www.w3.org/2000/svg">
+                                <use href="#fuji-logo-svg"/>
+                            </svg>
+                        </div>
+                        <span class="font-bold text-base tracking-tight">株式会社 藤井製作所</span>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        次世代型 警備・清掃自律ロボットの開発・製造・販売。<br>
+                        〒100-0001 東京都千代田区大手町1-X-X<br>
+                        TEL: 03-5200-XXXX
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-200 mb-4 uppercase tracking-wider text-xs">Navigation</h4>
+                    <ul class="space-y-2.5 text-xs">
+                        <li><a href="javascript:void(0)" onclick="navigateTo('home')" class="hover:text-blue-400 transition">トップページ</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('catalog')" class="hover:text-blue-400 transition">製品カタログ一覧</a></li>
+                        <li><a href="javascript:void(0)" onclick="scrollToContact()" class="hover:text-blue-400 transition">お問い合わせ・資料請求</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-200 mb-4 uppercase tracking-wider text-xs">Products</h4>
+                    <ul class="space-y-2.5 text-xs">
+                        <li><a href="javascript:void(0)" onclick="navigateTo('dualis-x')" class="hover:text-blue-400 transition">Dualis X - Hybrid (最上位)</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('dualis-y')" class="hover:text-blue-400 transition">Dualis Y - Advanced (上級)</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('dualis-z')" class="hover:text-blue-400 transition">Dualis Z - Standard (中級)</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateTo('dualis-a')" class="hover:text-blue-400 transition">Dualis A - Basic (小型)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-200 mb-4 uppercase tracking-wider text-xs">Technology</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        自律走行SLAM技術 / AIマルチスレッド並列処理 / サーモグラフィ判定 / 動的ルート生成 / 全自動ドッキングステーション
+                    </p>
+                </div>
+            </div>
+            <div class="pt-8 text-center text-xs text-slate-600 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <span>© Fujii Manufacturing Co., Ltd. All Rights Reserved.</span>
+                <div class="space-x-4">
+                    <a href="#" class="hover:text-slate-400 transition">プライバシーポリシー</a>
+                    <a href="#" class="hover:text-slate-400 transition">企業情報</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CUSTOM MODAL (Replaces default alert) -->
+    <div id="custom-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 sm:p-8 text-center space-y-5 transform transition-all scale-95 opacity-0" id="modal-content">
+            <div class="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 id="modal-title" class="text-xl font-bold text-slate-900"></h3>
+            <p id="modal-message" class="text-sm text-slate-600 leading-relaxed"></p>
+            <div class="pt-2">
+                <button onclick="closeModal()" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-xl transition shadow-sm">
+                    確認して閉じる
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Router function for page switching (SPA-like experience)
+        function navigateTo(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => {
+                p.classList.remove('active');
+            });
+
+            // Show selected page after a tiny delay for transition effect
+            setTimeout(() => {
+                const target = document.getElementById('page-' + pageId);
+                if (target) {
+                    target.classList.add('active');
+                }
+            }, 10);
+
+            // Update Desktop Nav styles
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.classList.remove('text-blue-700', 'bg-blue-50', 'font-bold');
+                btn.classList.add('text-slate-600');
+            });
+
+            const activeBtn = document.getElementById('nav-' + pageId);
+            if (activeBtn) {
+                activeBtn.classList.add('text-blue-700', 'bg-blue-50', 'font-bold');
+                activeBtn.classList.remove('text-slate-600');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Quick menu toggle for mobile/tablet
+        function toggleQuickMenu() {
+            const menu = document.getElementById('quick-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            } else {
+                menu.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Smooth scroll to the contact form and auto-select model
+        function scrollToContact(modelName) {
+            if (modelName) {
+                const select = document.getElementById('contact-model-select');
+                if (select) {
+                    // Try to match the option text partially
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (select.options[i].value.includes(modelName)) {
+                            select.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+            }
+            const contactSec = document.getElementById('contact-section');
+            if (contactSec) {
+                contactSec.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // --- Custom Modal Logic ---
+        function showModal(title, message) {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            
+            modal.classList.remove('hidden');
+            // Trigger animation
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            
+            // Animate out
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200); // match transition duration
+        }
+
+        // Handle form submission without using default alert()
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            // Using the custom modal instead of alert()
+            showModal(
+                '送信完了', 
+                'お問い合わせを受け付けました。ご登録いただいたメールアドレスへ、1〜2営業日以内に担当より折り返しご連絡いたします。\n\n（※これはデモ用の動作です。実際のデータは送信されていません。）'
+            );
+            e.target.reset(); // Reset form fields
+        }
+
+        // Initialize default page on load
+        window.addEventListener('DOMContentLoaded', () => {
+            navigateTo('home');
+        });
+    </script>
+
+</body>
+</html>
